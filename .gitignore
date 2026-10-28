@@ -1,3 +1,21 @@
+
+# Raw/private datasets
 data/raw/
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Generated model artifacts
+checkpoints/
+outputs/
+*.pt
+*.pth
+*.npz
+*.npy
+
+# Backups
+*.bak
