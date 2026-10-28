@@ -5,3 +5,4 @@ networkx
 numpy
 scipy
 matplotlib
+torch

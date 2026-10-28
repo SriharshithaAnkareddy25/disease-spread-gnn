@@ -9,9 +9,9 @@ __pycache__/
 venv/
 .env
 
-# Generated model artifacts
+# Generated model artifacts (large / reproducible from training)
 checkpoints/
-outputs/
+outputs/stgnn/
 *.pt
 *.pth
 *.npz
@@ -19,3 +19,7 @@ outputs/
 
 # Backups
 *.bak
+
+# outputs/evaluation/ IS tracked: small JSON metric reports and
+# figures are Person 3 deliverables, not regenerable without a full
+# training run.
