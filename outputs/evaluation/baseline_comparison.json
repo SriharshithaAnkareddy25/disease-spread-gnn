@@ -1,0 +1,32 @@
+{
+  "target": "beta proxy",
+  "test_window": "Experimental SIR-inspired beta proxy using supplied new_confirmed increments; not ground-truth beta. Test target dates: 2021-12-27 to 2022-02-07.",
+  "n_test_weeks": 7,
+  "results": {
+    "persistence": {
+      "n": 2341,
+      "MAE": 0.43617063760757446,
+      "RMSE": 0.6330562829971313
+    },
+    "geographic": {
+      "n": 2341,
+      "MAE": 0.5977091193199158,
+      "RMSE": 0.7052695751190186
+    },
+    "gravity": {
+      "n": 2341,
+      "MAE": 0.5868973731994629,
+      "RMSE": 0.6912356019020081
+    },
+    "learned": {
+      "n": 2341,
+      "MAE": 0.6239702105522156,
+      "RMSE": 0.7303498983383179
+    },
+    "hybrid": {
+      "n": 2341,
+      "MAE": 0.5995962619781494,
+      "RMSE": 0.7114642262458801
+    }
+  }
+}

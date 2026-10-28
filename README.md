@@ -116,3 +116,18 @@ features, adjacency matrices, and case-data rows.
   entirely. Top-k per node guarantees every node keeps its k strongest
   partners regardless of absolute weight scale (`edges_gravity_dense.csv`
   has the untouched pairwise values if you want to threshold differently).
+
+
+## Person 3 — SIR output layer and evaluation
+
+The model predicts a beta proxy; `src/evaluation/` converts that to case
+counts through a forward SIR step, then evaluates it against a persistence
+baseline with error reported separately on wave-onset and flat weeks, a
+turning-point-weighted loss, rolling-origin (real-time) evaluation, and
+top-k risk ranking with Precision@k / NDCG.
+
+See **[`src/evaluation/README.md`](src/evaluation/README.md)** for the
+method, how to run it, full results and limitations. Results and figures are
+in `outputs/evaluation/`.
+
+Note: all training and evaluation scripts require `PYTHONPATH=src`.

@@ -1,0 +1,74 @@
+{
+  "units": "weekly new confirmed cases per district",
+  "persistence": {
+    "all": 1486.2134786117838,
+    "onset": 1627.476755687438,
+    "flat": 1388.8602590320381
+  },
+  "runs": {
+    "geographic_w1": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1521.4603425151133,
+      "onset_MAE_std": 63.67962059049829,
+      "flat_MAE_mean": 1532.8099380465337,
+      "all_MAE_mean": 1528.1794129931575,
+      "onset_vs_persistence_pct": -6.514158362129353
+    },
+    "geographic_w5": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1439.934323008252,
+      "onset_MAE_std": 15.516067995101924,
+      "flat_MAE_mean": 1893.7907451000053,
+      "all_MAE_mean": 1708.6217205904159,
+      "onset_vs_persistence_pct": -11.523509139150136
+    },
+    "gravity_w1": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1605.1482163179098,
+      "onset_MAE_std": 90.42810276375323,
+      "flat_MAE_mean": 1468.0667673267817,
+      "all_MAE_mean": 1523.9946708497966,
+      "onset_vs_persistence_pct": -1.3719728586904936
+    },
+    "gravity_w5": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1384.512448909718,
+      "onset_MAE_std": 38.99318696161461,
+      "flat_MAE_mean": 1806.1577978334428,
+      "all_MAE_mean": 1634.130579204756,
+      "onset_vs_persistence_pct": -14.92889566186727
+    },
+    "hybrid_w1": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1491.6643871300428,
+      "onset_MAE_std": 25.496074221568914,
+      "flat_MAE_mean": 1387.1719281976664,
+      "all_MAE_mean": 1429.803839408575,
+      "onset_vs_persistence_pct": -8.344965178936079
+    },
+    "hybrid_w5": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1409.4553450761807,
+      "onset_MAE_std": 54.79258318971163,
+      "flat_MAE_mean": 1616.9949327649022,
+      "all_MAE_mean": 1532.32079105655,
+      "onset_vs_persistence_pct": -13.396284146569343
+    },
+    "learned_w1": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1552.9294269030877,
+      "onset_MAE_std": 49.08775051205934,
+      "flat_MAE_mean": 1487.647234148547,
+      "all_MAE_mean": 1514.2817365193462,
+      "onset_vs_persistence_pct": -4.58054645166726
+    },
+    "learned_w5": {
+      "n_seeds": 3,
+      "onset_MAE_mean": 1467.3393311898933,
+      "onset_MAE_std": 28.597775367298624,
+      "flat_MAE_mean": 1876.0520857880804,
+      "all_MAE_mean": 1709.3012403890623,
+      "onset_vs_persistence_pct": -9.839613618930214
+    }
+  }
+}
