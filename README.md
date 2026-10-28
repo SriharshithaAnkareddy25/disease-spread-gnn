@@ -41,7 +41,7 @@ need one file from) — re-run the fetch commands above after cloning.
 | `edges_geographic_adjacency.csv` | Same graph as an edge list (`src`, `dst`, `weight=1`) |
 | `edges_gravity.csv` | Same, sparsified gravity edges (`src`, `dst`, `weight`) |
 | `edges_gravity_dense.csv` | All 204,480 pairwise gravity weights, unthresholded — use this if the top-6 sparsification isn't what you want |
-| `weekly_case_features.csv` | `censuscode`, `week`, `Confirmed`, `Recovered`, `Deceased`, `Tested` — weekly, per district |
+| `weekly_case_features.csv` | Full 527-district × 175-week grid. `Confirmed`, `Recovered`, `Deceased`, `Tested` are **cumulative** counts at week end; `new_confirmed`, `new_recovered`, `new_deceased`, `new_tested` are that week's increments; `observed` flags weeks with real data (values are NaN otherwise). **Mask on `observed` / non-NaN `new_*`** — see Known Gaps |
 | `case_data_unmatched_districts.csv` | Case-data districts that couldn't be reconciled to a 2011 node (see Known Gaps) |
 | `geographic_adjacency_graph.png` | Visualization |
 
@@ -64,7 +64,22 @@ features, adjacency matrices, and case-data rows.
 
 ## Known gaps (read before you rely on population/case coverage)
 
-- **Case-data coverage: 567/640 districts, 90.9% of population.** The case
+- **District-level case data effectively ends 2022-11-07.** From late 2022
+  the source stops updating district rows and just repeats the last value;
+  all 2023 cases are filed under state-level "Unknown". Weeks after each
+  district's final increase are marked `observed=False`, not zero. Usable
+  targets: 2020-04 to ~2022-10. **Put validation/test splits inside that
+  window** (e.g. the Jan 2022 Omicron wave); anything later has no
+  district-level ground truth.
+- **States drop out over time.** Some states stopped publishing district
+  bulletins early (e.g. Uttar Pradesh on 2021-10-31, which the source
+  records as cumulative 0). Those weeks are unobserved, so 178 districts
+  have fewer than 100 observed weeks (median 127 of 175).
+- **Case-data coverage: 527/640 districts, 84.5% of population.** 567 nodes
+  match a case-data district by name, but 40 of them (all of Assam and
+  Telangana, Goa, Mumbai Suburban) only ever have 0 in the source because
+  those states reported under state-level/other names, so they're excluded.
+  The case
   data uses present-day districts; the node table uses 2011-census
   districts. Reconciled via `src/district_aliases.py` (handles Telangana's
   2014 split from Andhra Pradesh + 2016/2019 district carve-outs, a handful
@@ -76,12 +91,11 @@ features, adjacency matrices, and case-data rows.
   Pradesh's own 2022 split, and Delhi, which remain unreconciled).
 - **Remaining unmatched districts** are listed in
   `case_data_unmatched_districts.csv` rather than silently dropped.
-- **46 of the 567 matched districts have fewer than 100 of the 174 weeks**
-  (median is a full 174) — mostly newer administrative units that didn't
-  exist as separate reporting districts for the full 2020-2023 window.
-  Worth masking/padding explicitly rather than assuming a dense panel.
-- One negative value in the raw case data (an upstream correction/revision)
-  is clipped to 0 during aggregation.
+- **Cleaning applied to the raw cumulative series** (`clean_cumulative` in
+  `merge_case_data.py`): a 0 after a nonzero value is treated as "stopped
+  reporting", a 5-day rolling median removes one-day spikes/dips, and
+  downward revisions are pushed back so cumulative counts never decrease.
+  The source has no rows at all for the week of 2022-10-17 (unobserved).
 - 4 nodes are legitimately edgeless in the geographic-adjacency graph:
   the 3 Andaman & Nicobar districts and Lakshadweep have no land border with
   anywhere, by definition.
