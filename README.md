@@ -131,3 +131,16 @@ method, how to run it, full results and limitations. Results and figures are
 in `outputs/evaluation/`.
 
 Note: all training and evaluation scripts require `PYTHONPATH=src`.
+
+
+## Demo app
+
+    pip install -r requirements.txt
+    streamlit run app.py
+
+Pages: overview, data and graph explorer, forecast explorer (actual vs. model
+vs. persistence for any district), risk map (top-k districts and Rt), and the
+evaluation results. It reads the pre-exported bundle in `outputs/demo/`, so no
+training is needed. To rebuild that bundle after retraining:
+
+    PYTHONPATH=src python src/demo/export_demo_data.py

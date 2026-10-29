@@ -6,3 +6,5 @@ numpy
 scipy
 matplotlib
 torch
+streamlit
+plotly
